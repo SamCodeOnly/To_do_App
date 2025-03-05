@@ -1,26 +1,10 @@
-import express from "express"
-import mongoose from "mongoose"
+import app from "./app.js"
 
-const app = express()
-const PORT = 8000
-app.set("view engine" ,"ejs")
-app.use(express.json())
-
-const connectionURL = "mongodb://localhost:27017/SchoolDB"
-mongoose
-    .connect(connectionURL)
-    .then(()=>console.log("database successfully connected"))
-    .catch((error)=>console.log(error.message))
-const studentSchema = mongoose.Schema({
-        name: String,
-        email: String,
-        age: Number,
-        dept: String
-})
-const Student = mongoose.model("student", studentSchema)
+const PORT = process.env.PORT || 8000
 
 
 
+// listen server
 app.listen(PORT, ()=>{
     console.log(`server is running on port ${PORT}`)
 })
